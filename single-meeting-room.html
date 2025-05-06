@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Executive Suite - Meeting Room - YourBrand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles if needed */
+        .room-feature-icon {
+            @apply text-orange-500 mr-6 w-5 text-center;
+        }
+         /* FAQ Accordion Styles */
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb; /* gray-200 */
+        }
+        .faq-question {
+            cursor: pointer;
+        }
+        .faq-answer {
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            max-height: 0; /* Initially hidden */
+        }
+        .faq-answer.open {
+             max-height: 300px; /* Adjust max-height as needed for content */
+             margin-top: 0.5rem; /* Add some space when open */
+        }
+        /* Footer link styling */
+        footer a:not(.social-icon) {
+             @apply hover:text-orange-300 transition duration-300 hover:underline;
+        }
+        /* Dropdown positioning and initial state */
+        .dropdown-menu {
+            @apply absolute left-0 mt-2 w-72 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 invisible opacity-0 transition-opacity duration-200 ease-out z-40;
+        }
+        /* Show dropdown on hover */
+        .group:hover .dropdown-menu {
+            @apply visible opacity-100;
+        }
+        /* Styling for dropdown items */
+        .dropdown-item {
+            @apply flex items-start p-3 hover:bg-blue-50 transition duration-150 ease-in-out;
+        }
+        .dropdown-item i {
+            @apply text-orange-500 text-xl mt-1 mr-3 flex-shrink-0 w-6 text-center;
+        }
+        .dropdown-item-content {
+            @apply flex flex-col;
+        }
+        .dropdown-item-title {
+            @apply font-semibold text-sm text-blue-800;
+        }
+        .dropdown-item-desc {
+            @apply text-xs text-gray-600 mt-1;
+        }
+        header nav ul li a:not(.cta-button) {
+             @apply py-2 px-1;
+        }
+         /* Modal Styles */
+        .modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Hide scrollbar for gallery container, but allow scrolling */
+        .gallery-scroll::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        .gallery-scroll {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Thumbnail styling */
+        .thumbnail {
+            @apply w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent hover:border-orange-500 transition;
+        }
+        .thumbnail.active {
+             @apply border-orange-500 ring-2 ring-orange-300;
+        }
+    </style>
+</head>
+<body class="bg-gray-100"> 
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold hover:text-orange-300 transition duration-300">
+                <i class="fas fa-building mr-2"></i> YourBrand
+            </a>
+            <ul class="hidden md:flex space-x-6 items-center">
+                <li><a href="index.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Home</a></li>
+                <li><a href="virtual-address.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Virtual Office Address</a></li>
+                <li><a href="meeting-rooms.html" class="text-orange-300 font-medium border-b-2 border-orange-300 pb-1">Meeting Rooms</a></li>
+                <li><a href="conference-rooms.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Conference Rooms</a></li>
+                <li>
+                    <a href="contact-us.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition duration-300 shadow">
+                        Get Started <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </li>
+            </ul>
+            <button class="md:hidden focus:outline-none">
+                 <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+    <section id="intro" class="mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+        
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <img id="mainRoomImage" src="https://source.unsplash.com/random/800x600/?meeting-room,small,modern,bright"
+                         alt="Executive Suite Main View"
+                         class="w-full h-80 object-cover rounded-lg mb-4 cursor-pointer"
+                         onclick="openModal()"> <div id="thumbnailContainer" class="flex space-x-2 overflow-x-auto pb-2">
+                        </div>
+                </div>
+        
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <h1 class="text-3xl md:text-4xl font-bold text-blue-800 mb-3">The Executive Suite</h1>
+                    <p class="text-gray-600 mb-4">A professional and private space perfect for small team meetings, interviews, or client consultations.</p>
+                    <div class="flex items-center text-gray-700 mb-4 space-x-4">
+                        <span><i class="fas fa-users room-feature-icon"></i> Up to 4 People</span>
+                        <span><i class="fas fa-wifi room-feature-icon"></i> High-Speed Wi-Fi</span>
+                    </div>
+                    <p class="text-3xl font-bold text-blue-900 mb-6">$25<span class="text-lg font-normal text-gray-500"> / hour</span></p>
+                     <div class="bg-blue-50 p-4 rounded-md border border-blue-100">
+                        <h3 class="text-lg font-semibold text-blue-700 mb-3">Book This Room</h3>
+                        <div class="space-y-3">
+                            <div>
+                                <label for="date" class="block text-sm font-medium text-gray-700">Date</label>
+                                <input type="date" id="date" name="date" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                            </div>
+                            <div>
+                                <label for="time" class="block text-sm font-medium text-gray-700">Time Slot</label>
+                                <select id="time" name="time" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                                    <option>9:00 AM - 10:00 AM</option>
+                                    <option>10:00 AM - 11:00 AM</option>
+                                    <option>11:00 AM - 12:00 PM</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                            <button class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition duration-300 shadow">
+                                Add to Cart / Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </section>
+
+        <section id="description" class="mb-16 bg-white p-8 rounded-lg shadow">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-4">Room Description</h2>
+            <p class="text-gray-700 leading-relaxed mb-4">
+                The Executive Suite offers a quiet and confidential setting ideal for focused work or small group discussions. With comfortable seating for up to four people, it's perfectly suited for client consultations, interviews, or intimate team meetings. The room is bathed in natural light (or features excellent lighting) and designed with a modern aesthetic to create a professional atmosphere.
+            </p>
+            <p class="text-gray-700 leading-relaxed">
+                Stay connected with complimentary high-speed Wi-Fi, and utilize the included whiteboard for brainstorming or presentations. Located conveniently within our facility, the Executive Suite provides the privacy and amenities you need to conduct your business effectively.
+            </p>
+        </section>
+
+        <section id="features" class="mb-16 bg-white p-8 rounded-lg shadow">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-6">Room Features</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 text-gray-700">
+                <div class="flex items-center"><span><i class="fas fa-users room-feature-icon"></i> Capacity: Up to 4 people</span> </div>
+                <div class="flex items-center"><span><i class="fas fa-wifi room-feature-icon"></i> High-Speed Wi-Fi</span></div>
+                <div class="flex items-center"><span><i class="fas fa-chalkboard room-feature-icon"></i> Whiteboard Included</span></div>
+                <div class="flex items-center"><span><i class="fas fa-chair room-feature-icon"></i> Comfortable Seating</span></div>
+                <div class="flex items-center"><span><i class="fas fa-lightbulb room-feature-icon"></i> Good Lighting</span></div>
+                <div class="flex items-center"><span><i class="fas fa-shield-alt room-feature-icon"></i> Private & Confidential</span></div>
+                <div class="flex items-center"><span><i class="fas fa-plug room-feature-icon"></i> Power Outlets Accessible</span></div>
+                <div class="flex items-center"><span><i class="fas fa-coffee room-feature-icon"></i> Refreshments Available</div>
+                <div class="flex items-center"><span><i class="fas fa-air-conditioner room-feature-icon"></i> Air Conditioned</span></div>
+            </div>
+        </section>
+
+        <section id="why-choose" class="mb-16 bg-blue-50 p-8 rounded-lg shadow">
+             <h2 class="text-2xl font-semibold text-blue-800 mb-6 text-center">Why Choose the Executive Suite?</h2>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                 <div class="text-center p-4 bg-white rounded shadow-sm">
+                     <i class="fas fa-lock text-3xl text-orange-500 mb-3"></i>
+                     <h4 class="font-semibold text-blue-700 mb-1">Privacy Assured</h4>
+                     <p class="text-sm text-gray-600">Ideal for confidential discussions and interviews.</p>
+                 </div>
+                 <div class="text-center p-4 bg-white rounded shadow-sm">
+                     <i class="fas fa-dollar-sign text-3xl text-orange-500 mb-3"></i>
+                     <h4 class="font-semibold text-blue-700 mb-1">Cost-Effective</h4>
+                     <p class="text-sm text-gray-600">Professional space without the premium price tag.</p>
+                 </div>
+                 <div class="text-center p-4 bg-white rounded shadow-sm">
+                     <i class="fas fa-brain text-3xl text-orange-500 mb-3"></i>
+                     <h4 class="font-semibold text-blue-700 mb-1">Focus-Friendly</h4>
+                     <p class="text-sm text-gray-600">Minimize distractions for productive work sessions.</p>
+                 </div>
+             </div>
+        </section>
+
+        <section id="faq" class="mb-16 bg-white p-8 rounded-lg shadow">
+            <h2 class="text-2xl font-semibold text-blue-800 mb-6">Booking FAQs</h2>
+            <div class="space-y-4">
+                 <div class="faq-item pt-4 pb-4">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                        <span>What's the minimum booking duration?</span>
+                        <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                    </h4>
+                    <p class="text-gray-600 faq-answer">The minimum booking duration for the Executive Suite is typically one hour.</p>
+                </div>
+                 <div class="faq-item pt-4 pb-4">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                        <span>Can I bring my own drinks or snacks?</span>
+                        <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                    </h4>
+                    <p class="text-gray-600 faq-answer">Yes, you are welcome to bring your own refreshments. Basic water, tea, and coffee are also available. Please inquire about catering options if needed.</p>
+                </div>
+                <div class="faq-item pt-4 pb-4">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                        <span>How do I access the room on the day?</span>
+                        <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                    </h4>
+                    <p class="text-gray-600 faq-answer">Upon arrival, please check in at the reception desk. Our staff will guide you to the Executive Suite and ensure you have everything you need.</p>
+                </div>
+                 <div class="faq-item pt-4 pb-4">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                        <span>Is parking available?</span>
+                        <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                    </h4>
+                    <p class="text-gray-600 faq-answer">Parking availability varies by location. Please check the specific location details or contact us for information regarding parking options near the facility.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="final-cta">
+             <div class="cta-block relative text-center rounded-lg shadow-lg border border-gray-200 overflow-hidden"
+                  style="background-image: url('https://source.unsplash.com/random/1000x300/?office-desk,laptop,notebook'); background-size: cover; background-position: center;">
+                 <div class="absolute inset-0 bg-black/60 rounded-lg"></div>
+                 <div class="relative z-10 p-10 md:p-16">
+                     <h3 class="text-3xl md:text-4xl font-bold text-white mb-6 max-w-2xl mx-auto">Secure Your Ideal Meeting Space</h3>
+                     <p class="text-lg text-blue-100 mb-8 max-w-xl mx-auto">
+                        Don't wait! Book the Executive Suite today for your next important meeting or focused work session.
+                     </p>
+                    <a href="#intro" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 shadow-md text-lg transform hover:scale-105">
+                        Book the Executive Suite Now <i class="fas fa-calendar-check ml-2"></i>
+                    </a>
+                 </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden bg-black bg-opacity-80">
+        <div class="bg-white p-4 sm:p-6 rounded-lg shadow-xl relative max-w-4xl w-full modal-content transform scale-95">
+            <button id="closeModal" class="absolute top-2 right-3 text-gray-300 bg-gray-800 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-700 text-xl leading-none z-10">
+                &times;
+            </button>
+            <img id="modalMainImage" src="" alt="Meeting Room View" class="w-full h-[70vh] object-contain rounded mb-4">
+             <div id="modalThumbnailContainer" class="flex space-x-2 overflow-x-auto justify-center">
+                 </div>
+        </div>
+    </div>
+
+    <footer class="bg-blue-900 text-blue-200 py-12 mt-16"> <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-8">
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Company</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Services</h5>
+                     <ul class="space-y-2 text-sm">
+                        <li><a href="virtual-office-address.html">Virtual Office Address</a></li>
+                        <li><a href="meeting-rooms.html">Meeting Rooms</a></li>
+                        <li><a href="conference-rooms.html">Conference Rooms</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                     <h5 class="text-lg font-semibold mb-4 text-white">Contact Us</h5>
+                     <address class="not-italic text-sm space-y-2 mb-4">
+                        <p><i class="fas fa-map-marker-alt mr-2 text-orange-400"></i>123 Business Avenue, Suite 100<br>Lagos, Nigeria</p>
+                        <p><i class="fas fa-phone-alt mr-2 text-orange-400"></i><a href="tel:+23412345678">+234 1 234 5678</a></p>
+                        <p><i class="fas fa-envelope mr-2 text-orange-400"></i><a href="mailto:support@yourbrand.com">support@yourbrand.com</a></p>
+                     </address>
+                     <div class="flex space-x-4">
+                        <a href="#" aria-label="LinkedIn" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                     </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-blue-700 text-center text-sm">
+                 &copy; 2025 YourBrand Virtual Offices. All Rights Reserved. |
+                 <a href="#">Privacy Policy</a> |
+                 <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    console.log("Single Meeting Room page loaded.");
+
+    // --- FAQ Toggle ---
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const answer = question.nextElementSibling;
+            const icon = question.querySelector('i');
+            // Ensure the next sibling is the answer paragraph and toggle
+            if (answer && answer.classList.contains('faq-answer')) {
+                const isOpen = answer.classList.toggle('open');
+                answer.style.maxHeight = isOpen ? answer.scrollHeight + "px" : "0"; // Use scrollHeight for dynamic height
+                if (icon) {
+                    icon.classList.toggle('rotate-180', isOpen); // Add/remove rotation based on open state
+                }
+            } else {
+                 console.error("Could not find the answer element for:", question);
+                 // Optionally search deeper if structure varies, but ensure it's the intended answer
+                 const potentialAnswer = question.closest('.faq-item')?.querySelector('.faq-answer');
+                 if(potentialAnswer) {
+                     const isOpen = potentialAnswer.classList.toggle('open');
+                     potentialAnswer.style.maxHeight = isOpen ? potentialAnswer.scrollHeight + "px" : "0";
+                     if (icon) {
+                         icon.classList.toggle('rotate-180', isOpen);
+                     }
+                 }
+            }
+        });
+    });
+
+    // --- Image Gallery ---
+    const mainImage = document.getElementById('mainRoomImage');
+    const thumbnailContainer = document.getElementById('thumbnailContainer');
+    const modal = document.getElementById('imageModal');
+    const modalMainImage = document.getElementById('modalMainImage');
+    const modalThumbnailContainer = document.getElementById('modalThumbnailContainer');
+    const closeModalBtn = document.getElementById('closeModal');
+
+    // Define images: pairs of main image and thumbnail image paths
+    // *** IMPORTANT: Replace these placeholder paths with your actual file paths ***
+    const roomImageData = [
+        { main: 'meeting2.jpg', thumb: 'images/meeting2.webp' },
+        { main: 'meeting3.jpg', thumb: 'images/meeting3.webp' }
+    ];
+
+    // Set the initial main image
+    if (mainImage && roomImageData.length > 0) {
+        mainImage.src = roomImageData[0].main; // Set initial main image source
+    } else if (!mainImage) {
+        console.error("Element with ID 'mainRoomImage' not found.");
+    }
+
+
+    // Function to create and add thumbnails
+    function populateThumbnails(container, targetMainImage, imageData) {
+        if (!container) {
+            console.error("Thumbnail container not found:", container);
+            return;
+        }
+        container.innerHTML = ''; // Clear existing thumbnails
+        imageData.forEach((imgData, index) => {
+            const thumb = document.createElement('img');
+            thumb.src = imgData.thumb; // Use the specific thumbnail path
+            thumb.alt = `Executive Suite View ${index + 1} Thumbnail`;
+            thumb.className = 'thumbnail w-20 h-16 object-cover rounded cursor-pointer border-2 border-transparent hover:border-orange-500 transition'; // Added Tailwind size classes
+            thumb.dataset.mainSrc = imgData.main; // Store the main image path in a data attribute
+
+            // Set initial active thumbnail based on the target main image's src
+            if (targetMainImage && targetMainImage.src.endsWith(imgData.main)) {
+                 thumb.classList.add('active', 'border-orange-500', 'ring-2', 'ring-orange-300');
+            } else {
+                 thumb.classList.remove('active', 'border-orange-500', 'ring-2', 'ring-orange-300');
+            }
+
+
+            thumb.onclick = () => {
+                if (targetMainImage) {
+                    targetMainImage.src = thumb.dataset.mainSrc; // Update the target main image
+                } else {
+                     console.error("Target main image element not found for thumbnail click.");
+                }
+                // Update active state for thumbnails in the specific container
+                container.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active', 'border-orange-500', 'ring-2', 'ring-orange-300'));
+                thumb.classList.add('active', 'border-orange-500', 'ring-2', 'ring-orange-300');
+            };
+            container.appendChild(thumb);
+        });
+    }
+
+    // Populate thumbnails on the page load
+    populateThumbnails(thumbnailContainer, mainImage, roomImageData);
+
+
+    // Function to open the modal
+    function openModal() {
+        if (!modal || !modalMainImage || !mainImage) {
+             console.error("Modal elements or main page image not found.");
+             return;
+        }
+        modalMainImage.src = mainImage.src; // Set modal image to current main image src
+        populateThumbnails(modalThumbnailContainer, modalMainImage, roomImageData); // Populate modal thumbs
+        modal.classList.remove('hidden');
+        // Trigger reflow for transition
+        void modal.offsetWidth;
+        const modalContent = modal.querySelector('.modal-content');
+         if(modalContent) {
+            modalContent.classList.remove('scale-95', 'opacity-0');
+            modalContent.classList.add('scale-100', 'opacity-100');
+         }
+         modal.classList.remove('opacity-0');
+         modal.classList.add('opacity-100');
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        if (!modal) return;
+        const modalContent = modal.querySelector('.modal-content');
+        if(modalContent) {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+        }
+        modal.classList.remove('opacity-100');
+        modal.classList.add('opacity-0');
+
+        setTimeout(() => {
+             modal.classList.add('hidden');
+        }, 300); // Match transition duration
+    }
+
+     // Add event listener to main image if it exists
+     if (mainImage) {
+         mainImage.addEventListener('click', openModal);
+     }
+
+
+    // Event listeners for modal
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModal);
+    }
+    if (modal) {
+        modal.addEventListener('click', (event) => { // Close on overlay click
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    }
+    document.addEventListener('keydown', (event) => { // Close with Escape key
+        if (event.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+            closeModal();
+        }
+    });
+
+</script>
+</body>
+</html>

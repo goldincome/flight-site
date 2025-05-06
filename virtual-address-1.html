@@ -16,16 +16,14 @@
         }
         /* Custom styles if needed */
         .hero-bg-virtual {
-            /* Placeholder background image - replace with relevant stock image */
             background-image: url('https://placehold.co/1920x600/1e3a8a/e0e7ff?text=Professional+Business+Address');
             background-size: cover;
             background-position: center;
         }
-        /* Style for highlighting the popular package */
         .popular-package {
             border: 2px solid #f97316; /* Orange border */
             position: relative;
-            overflow: hidden; /* To contain the badge */
+            overflow: hidden;
         }
         .popular-badge {
             position: absolute;
@@ -40,14 +38,12 @@
             transform-origin: center;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
-         /* Simple Accordion-like styling for FAQ */
         .faq-item {
             border-bottom: 1px solid #e5e7eb; /* gray-200 */
         }
         .faq-question {
-            cursor: pointer; /* Indicate it's interactive */
+            cursor: pointer;
         }
-        /* Styling for How It Works steps */
         .step-number {
             width: 50px;
             height: 50px;
@@ -59,22 +55,39 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
-        /* Smooth transition for FAQ answers (optional) */
         .faq-answer {
             overflow: hidden;
             transition: max-height 0.3s ease-out;
-            max-height: 0; /* Initially hidden */
+            max-height: 0;
         }
         .faq-answer.open {
-             max-height: 300px; /* Adjust max-height as needed */
-             margin-top: 0.5rem; /* Add some space when open */
+             max-height: 300px;
+             margin-top: 0.5rem;
         }
-
+        /* Modal Styles */
+        .modal-overlay {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal-content {
+            transition: transform 0.3s ease-in-out;
+        }
+        /* Hide scrollbar for gallery container, but allow scrolling */
+        .gallery-scroll::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        .gallery-scroll {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* Star color */
+        .star-rating i {
+            color: #f59e0b; /* Tailwind amber-500 */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-50">
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold hover:text-orange-300 transition duration-300">
                 <i class="fas fa-building mr-2"></i> YourBrand
@@ -106,20 +119,25 @@
     </section>
 
     <section id="virtual-address-description" class="py-16 md:py-24 bg-blue-50">
-        <div class="container mx-auto px-6 max-w-4xl">
-             <div class="text-center mb-12">
-                 <i class="fas fa-map-pin text-5xl text-orange-500 mb-4"></i>
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800">What is a Virtual Office Address?</h2>
-             </div>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                A Virtual Office Address provides your business with a prestigious physical mailing address and essential office-related services, such as mail handling, without the need to rent expensive traditional office space. It's the perfect solution for establishing a professional presence in a prime location while maintaining flexibility and controlling costs.
-            </p>
-            <p class="text-lg text-gray-700 mb-6 leading-relaxed">
-                Whether you're a startup looking to build credibility, a freelancer needing a professional front, a remote team requiring a central hub for mail, or an international company entering a new market, a virtual address offers significant advantages. You can use the address on your website, business cards, marketing materials, and even for business registration (subject to local regulations).
-            </p>
-             <p class="text-lg text-gray-700 leading-relaxed">
-                Beyond just an address, our virtual office packages often include mail forwarding, scanning services, and access to meeting rooms, providing a comprehensive solution to support your business operations efficiently and affordably.
-            </p>
+        <div class="container mx-auto px-6 max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                 <h2 class="text-3xl md:text-4xl font-bold text-blue-800 mb-6">What is a Virtual Office Address?</h2>
+                 <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    A Virtual Office Address provides your business with a prestigious physical mailing address and essential office-related services, such as mail handling, without the need to rent expensive traditional office space. It's the perfect solution for establishing a professional presence in a prime location while maintaining flexibility and controlling costs.
+                </p>
+                <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                    Whether you're a startup looking to build credibility, a freelancer needing a professional front, a remote team requiring a central hub for mail, or an international company entering a new market, a virtual address offers significant advantages. You can use the address on your website, business cards, marketing materials, and even for business registration (subject to local regulations).
+                </p>
+                 <p class="text-lg text-gray-700 leading-relaxed">
+                    Beyond just an address, our virtual office packages often include mail forwarding, scanning services, and access to meeting rooms, providing a comprehensive solution to support your business operations efficiently and affordably.
+                </p>
+            </div>
+            <div>
+                 <img src="https://source.unsplash.com/random/600x450/?office,business"
+                     alt="Professional office setting"
+                     class="w-full h-auto rounded-lg shadow-lg"
+                     onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/ffffff?text=Image+Not+Found';">
+            </div>
         </div>
     </section>
 
@@ -180,7 +198,7 @@
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">How It Works in 3 Simple Steps</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto text-center">
-                <div class="flex flex-col items-center p-6">
+                 <div class="flex flex-col items-center p-6">
                      <div class="step-number bg-orange-500 text-white">1</div>
                      <i class="fas fa-mouse-pointer text-5xl text-blue-700 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-800 mb-2">Choose Your Plan</h3>
@@ -202,36 +220,107 @@
         </div>
     </section>
 
-    <section id="why-choose-us" class="py-16 md:py-24 bg-white">
+    <section id="our-plans" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Our Plans</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-50 rounded-lg shadow-md border border-gray-200 flex flex-col overflow-hidden">
+                    <img src="https://placehold.co/600x300/e0e7ff/374151?text=Basic+Plan+View"
+                         alt="Basic Plan Preview"
+                         class="w-full h-48 object-cover cursor-pointer plan-image"
+                         data-gallery="basic">
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-semibold text-blue-700 mb-4 text-center">Basic Mail</h3>
+                        <p class="text-4xl font-bold text-center text-blue-900 mb-6">$49<span class="text-lg font-normal text-gray-500">/month</span></p>
+                        <ul class="space-y-3 text-gray-600 mb-8 flex-grow">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Prestigious Business Address</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Mail Receiving</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-400 mr-2"></i> Mail Forwarding (Pay per use)</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-400 mr-2"></i> Mail Scanning (Pay per use)</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-400 mr-2"></i> Meeting Room Access (Discounted)</li>
+                        </ul>
+                        <a href="#" class="mt-auto block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow">
+                            Select Basic
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-lg border flex flex-col popular-package overflow-hidden">
+                     <div class="popular-badge">Popular</div>
+                     <img src="https://placehold.co/600x300/f97316/ffffff?text=Business+Pro+View"
+                          alt="Business Pro Plan Preview"
+                          class="w-full h-48 object-cover cursor-pointer plan-image"
+                          data-gallery="pro">
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-semibold text-orange-600 mb-4 text-center">Business Pro</h3>
+                        <p class="text-4xl font-bold text-center text-blue-900 mb-6">$99<span class="text-lg font-normal text-gray-500">/month</span></p>
+                        <ul class="space-y-3 text-gray-700 mb-8 flex-grow">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Prestigious Business Address</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Mail Receiving</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Weekly Mail Forwarding</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Mail Scanning (10 pages/month)</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Meeting Room Access (Discounted)</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Local Phone Number (Optional Add-on)</li>
+                        </ul>
+                        <a href="#" class="mt-auto block w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow-md">
+                            Select Pro
+                        </a>
+                    </div>
+                </div>
+                <div class="bg-gray-50 rounded-lg shadow-md border border-gray-200 flex flex-col overflow-hidden">
+                     <img src="https://placehold.co/600x300/1d4ed8/ffffff?text=Enterprise+Suite+View"
+                          alt="Enterprise Suite Plan Preview"
+                          class="w-full h-48 object-cover cursor-pointer plan-image"
+                          data-gallery="enterprise">
+                    <div class="p-8 flex flex-col flex-grow">
+                        <h3 class="text-2xl font-semibold text-blue-700 mb-4 text-center">Enterprise Suite</h3>
+                        <p class="text-4xl font-bold text-center text-blue-900 mb-6">$149<span class="text-lg font-normal text-gray-500">/month</span></p>
+                        <ul class="space-y-3 text-gray-600 mb-8 flex-grow">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Prestigious Business Address</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Mail Receiving & Sorting</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Daily Mail Forwarding</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Mail Scanning (50 pages/month)</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Meeting Room Access (Included Hours)</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Dedicated Phone Line & Answering</li>
+                        </ul>
+                        <a href="#" class="mt-auto block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-300 shadow">
+                            Select Enterprise
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-choose-us" class="py-16 md:py-24 bg-blue-50">
         <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Why Choose Our Virtual Address?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="text-center p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition duration-300">
+                 <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
                      <i class="fas fa-landmark text-4xl text-orange-500 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-700 mb-2">Prime Location</h3>
                     <p class="text-gray-600">Impress clients with a prestigious business address in a sought-after area.</p>
                 </div>
-                 <div class="text-center p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition duration-300">
+                 <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
                      <i class="fas fa-dollar-sign text-4xl text-orange-500 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-700 mb-2">Cost Effective</h3>
                     <p class="text-gray-600">Get the benefits of a physical office address at a fraction of the cost.</p>
                 </div>
-                 <div class="text-center p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition duration-300">
+                 <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
                      <i class="fas fa-user-tie text-4xl text-orange-500 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-700 mb-2">Professional Image</h3>
                     <p class="text-gray-600">Enhance your brand's credibility and professionalism instantly.</p>
                 </div>
-                 <div class="text-center p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition duration-300">
+                 <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
                      <i class="fas fa-envelope-open-text text-4xl text-orange-500 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-700 mb-2">Reliable Mail Handling</h3>
                     <p class="text-gray-600">Secure and efficient mail receiving, forwarding, and scanning services.</p>
                 </div>
-                 <div class="text-center p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition duration-300">
+                 <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
                      <i class="fas fa-sync-alt text-4xl text-orange-500 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-700 mb-2">Flexibility & Scalability</h3>
                     <p class="text-gray-600">Choose the plan that fits your needs and scale as your business grows.</p>
                 </div>
-                 <div class="text-center p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition duration-300">
+                 <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
                      <i class="fas fa-headset text-4xl text-orange-500 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-700 mb-2">Dedicated Support</h3>
                     <p class="text-gray-600">Our friendly team is here to assist you with any queries.</p>
@@ -240,39 +329,82 @@
         </div>
     </section>
 
-    <section id="faq" class="py-16 md:py-24 bg-blue-50">
+    <section id="testimonials" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">What Our Customers Are Saying</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-6 rounded-lg shadow border border-blue-100">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The virtual address service gave my startup the professional image it needed without the high cost. Mail forwarding is always prompt!"</p>
+                    <p class="font-semibold text-blue-800">Aisha Bello</p>
+                    <p class="text-sm text-gray-500">Founder, TechStart NG</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow border border-blue-100">
+                     <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> </div>
+                    <p class="text-gray-700 italic mb-4">"Using YourBrand's virtual office has been seamless. The mail scanning service is incredibly convenient for managing business correspondence remotely."</p>
+                    <p class="font-semibold text-blue-800">Chinedu Okonkwo</p>
+                    <p class="text-sm text-gray-500">Freelance Consultant</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow border border-blue-100">
+                     <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The Business Pro plan is perfect for my growing e-commerce store. Having a prestigious address and reliable mail handling makes a huge difference."</p>
+                    <p class="font-semibold text-blue-800">Fatima Ibrahim</p>
+                    <p class="text-sm text-gray-500">CEO, KwikShop</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials-cta" class="py-16 bg-blue-600 text-white">
+         <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl font-semibold mb-4">Join Our Satisfied Clients!</h3>
+            <p class="text-blue-100 mb-8 max-w-lg mx-auto">
+                Experience the benefits of a professional business address and reliable mail services. Choose your plan today!
+            </p>
+            <a href="#packages" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 shadow-lg transform hover:scale-105">
+                Select Your Virtual Office Plan <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <div class="faq-item p-5 rounded-lg bg-white shadow">
+                <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
                     <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>What exactly is a virtual office address?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
                     <p class="text-gray-600 faq-answer">A virtual office address provides businesses with a physical mailing address and office-related services without the overhead of a long lease and administrative staff. It allows you to establish a professional presence in a desired location.</p>
                 </div>
-                <div class="faq-item p-5 rounded-lg bg-white shadow">
+                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
                     <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>How does mail handling work?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
-                     <p class="text-gray-600 faq-answer">We receive mail and packages on your behalf at your virtual address. Depending on your plan, we can hold it for pickup, forward it to another address (daily, weekly, or on-demand), or scan the contents and email them to you.</p>
+                    <p class="text-gray-600 faq-answer">We receive mail and packages on your behalf at your virtual address. Depending on your plan, we can hold it for pickup, forward it to another address (daily, weekly, or on-demand), or scan the contents and email them to you.</p>
                 </div>
-                 <div class="faq-item p-5 rounded-lg bg-white shadow">
+                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
                     <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>Can I use this address for business registration?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
-                     <p class="text-gray-600 faq-answer">Yes, in most cases, our virtual office address can be used as your official registered business address. However, we recommend checking specific requirements with your local authorities or registration body.</p>
+                    <p class="text-gray-600 faq-answer">Yes, in most cases, our virtual office address can be used as your official registered business address. However, we recommend checking specific requirements with your local authorities or registration body.</p>
                 </div>
-                <div class="faq-item p-5 rounded-lg bg-white shadow">
+                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
                     <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>Are meeting rooms included?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
-                     <p class="text-gray-600 faq-answer">Access to meeting rooms may be included or offered at a discounted rate depending on your chosen subscription package. Please check the details of each plan.</p>
+                    <p class="text-gray-600 faq-answer">Access to meeting rooms may be included or offered at a discounted rate depending on your chosen subscription package. Please check the details of each plan.</p>
                 </div>
-                 </div>
+            </div>
         </div>
     </section>
 
@@ -297,49 +429,125 @@
         </div>
     </footer>
 
+    <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div id="modalOverlay" class="absolute inset-0 bg-black bg-opacity-75 modal-overlay"></div>
+        <div class="bg-white p-4 sm:p-6 rounded-lg shadow-xl relative max-w-3xl w-full modal-content transform scale-95">
+            <button id="closeModal" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl leading-none z-10">
+                &times;
+            </button>
+            <h3 id="galleryTitle" class="text-xl font-semibold text-blue-800 mb-4 text-center">Plan Gallery</h3>
+            <div id="galleryContainer" class="gallery-scroll overflow-x-auto flex space-x-4 p-4 bg-gray-100 rounded h-72 items-center">
+            </div>
+        </div>
+    </div>
+
     <script>
-        console.log("Virtual Office Address page loaded (interactive FAQ enabled).");
+        console.log("Virtual Office Address page loaded (interactive FAQ & Gallery enabled).");
 
-        // Select all FAQ question elements
+        // --- FAQ Toggle ---
         const faqQuestions = document.querySelectorAll('.faq-question');
-
-        // Add click event listener to each question
         faqQuestions.forEach(question => {
             question.addEventListener('click', () => {
-                // Find the answer paragraph associated with the clicked question
-                // Assumes the answer <p> is the next element sibling
                 const answer = question.nextElementSibling;
-                // Find the icon within the clicked question
                 const icon = question.querySelector('i');
-
-                // Check if the answer element exists and has the correct class
                 if (answer && answer.classList.contains('faq-answer')) {
-                    // Toggle the 'open' class to trigger CSS transition for max-height
                     answer.classList.toggle('open');
-
-                    // Toggle the icon rotation
                     if (icon) {
-                        icon.classList.toggle('rotate-180'); // Tailwind class for rotation
+                        icon.classList.toggle('rotate-180');
                     }
-
-                    // Optional: Close other open FAQs when one is opened
-                    // faqQuestions.forEach(otherQuestion => {
-                    //     if (otherQuestion !== question) {
-                    //         const otherAnswer = otherQuestion.nextElementSibling;
-                    //         const otherIcon = otherQuestion.querySelector('i');
-                    //         if (otherAnswer && otherAnswer.classList.contains('faq-answer')) {
-                    //             otherAnswer.classList.remove('open');
-                    //         }
-                    //         if (otherIcon) {
-                    //             otherIcon.classList.remove('rotate-180');
-                    //         }
-                    //     }
-                    // });
                 } else {
                     console.error("Could not find the answer element for:", question);
                 }
             });
         });
+
+        // --- Image Gallery Modal ---
+        const modal = document.getElementById('imageModal');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeModalBtn = document.getElementById('closeModal');
+        const galleryContainer = document.getElementById('galleryContainer');
+        const galleryTitle = document.getElementById('galleryTitle');
+        const planImages = document.querySelectorAll('.plan-image');
+
+        const galleries = {
+            basic: {
+                title: "Basic Mail Plan Gallery",
+                images: [
+                    'https://placehold.co/600x400/e0e7ff/374151?text=Basic+Image+1',
+                    'https://placehold.co/600x400/d1d5db/374151?text=Basic+Image+2',
+                    'https://placehold.co/600x400/9ca3af/ffffff?text=Basic+Image+3',
+                ]
+            },
+            pro: {
+                 title: "Business Pro Plan Gallery",
+                 images: [
+                    'https://placehold.co/600x400/f97316/ffffff?text=Pro+Image+1',
+                    'https://placehold.co/600x400/fb923c/ffffff?text=Pro+Image+2',
+                    'https://placehold.co/600x400/fdba74/1e3a8a?text=Pro+Image+3',
+                    'https://placehold.co/600x400/ffedd5/1e3a8a?text=Pro+Image+4',
+                 ]
+            },
+            enterprise: {
+                 title: "Enterprise Suite Gallery",
+                 images: [
+                    'https://placehold.co/600x400/1d4ed8/ffffff?text=Enterprise+Image+1',
+                    'https://placehold.co/600x400/2563eb/ffffff?text=Enterprise+Image+2',
+                    'https://placehold.co/600x400/60a5fa/ffffff?text=Enterprise+Image+3',
+                 ]
+            }
+        };
+
+        function openModal(galleryId) {
+            const galleryData = galleries[galleryId];
+            if (!galleryData) {
+                console.error("Gallery data not found for:", galleryId);
+                return;
+            }
+            galleryContainer.innerHTML = '';
+            galleryTitle.textContent = galleryData.title || "Plan Gallery";
+            galleryData.images.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `${galleryData.title} Image`;
+                img.className = 'h-64 object-contain rounded-md flex-shrink-0';
+                galleryContainer.appendChild(img);
+            });
+            modal.classList.remove('hidden');
+            void modal.offsetWidth;
+            modal.querySelector('.modal-overlay').classList.add('opacity-100');
+            modal.querySelector('.modal-content').classList.remove('scale-95');
+            modal.querySelector('.modal-content').classList.add('scale-100');
+        }
+
+        function closeModal() {
+             modal.querySelector('.modal-overlay').classList.remove('opacity-100');
+             modal.querySelector('.modal-content').classList.remove('scale-100');
+             modal.querySelector('.modal-content').classList.add('scale-95');
+             setTimeout(() => {
+                 modal.classList.add('hidden');
+             }, 300);
+        }
+
+        planImages.forEach(image => {
+            image.addEventListener('click', () => {
+                const galleryId = image.getAttribute('data-gallery');
+                openModal(galleryId);
+            });
+        });
+
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+
+        modal.querySelector('.modal-content').addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
     </script>
 
 </body>

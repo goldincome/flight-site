@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - VMC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Hero background */
+        .hero-bg-contact {
+            background-image: url('conference.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        /* Footer link styling */
+        footer a:not(.social-icon) {
+             @apply hover:text-orange-300 transition duration-300 hover:underline;
+        }
+        /* Basic styling for focus states on form */
+        input:focus, textarea:focus, select:focus {
+            @apply ring-2 ring-orange-300 border-blue-500;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold hover:text-orange-300 transition duration-300">
+                <i class="fas fa-building mr-2"></i> VMC
+            </a>
+            <ul class="hidden md:flex space-x-6 items-center">
+                <li><a href="index.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Home</a></li>
+                <li><a href="virtual-address.html" class="hover:text-orange-300 transition duration-300">Virtual Office Address</a></li>
+                <li><a href="meeting-rooms.html" class="hover:text-orange-300 transition duration-300">Meeting Rooms</a></li>
+                <li><a href="conference-rooms.html" class="hover:text-orange-300 transition duration-300">Conference Rooms</a></li>
+                <li>
+                    <a href="contact-us.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition duration-300 shadow"> Contact Us <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </li>
+                 <li> <a href="cart.html" class="text-xl hover:text-orange-300 transition duration-300 relative">
+                        <i class="fas fa-shopping-cart"></i>
+                        </a>
+                </li>
+            </ul>
+            <button class="md:hidden focus:outline-none">
+                 <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero-bg-contact text-white relative">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="container mx-auto px-6 py-24 md:py-32 relative z-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 leading-tight">Get In Touch</h1>
+            <p class="text-lg md:text-xl mb-6 text-blue-100 max-w-3xl mx-auto">
+                We're here to help! Whether you have questions about our services, need support, or want to discuss your specific needs, reach out to us.
+            </p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-6 py-16 md:py-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+
+            <div class="space-y-10">
+                 <section>
+                    <h2 class="text-2xl font-semibold text-blue-800 mb-4">Contact Information</h2>
+                    <div class="space-y-4 text-gray-700">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt fa-fw text-orange-500 mt-1 mr-3"></i>
+                            <span>Unit 6, Block 3, Dockyard Industrial Estate,<br>Church Street, Woolwich, London UK</span>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt fa-fw text-orange-500 mt-1 mr-3"></i>
+                            <a href="tel:+4420000000000" class="hover:text-orange-600">+44 2000 0000 000</a>
+                        </div>
+                         <div class="flex items-start">
+                            <i class="fas fa-envelope fa-fw text-orange-500 mt-1 mr-3"></i>
+                            <a href="mailto:support@VMC.com" class="hover:text-orange-600">support@VMC.com</a>
+                        </div>
+                         <div class="flex items-start">
+                            <i class="fas fa-clock fa-fw text-orange-500 mt-1 mr-3"></i>
+                            <span>Mon - Fri: 9:00 AM - 5:00 PM</span>
+                        </div>
+                    </div>
+                     <div class="mt-6 h-48 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500">
+                         
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.808834525843!2d0.062277277967773!3d51.49837297180839!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a7c8f7a9a0a5%3A0x3b9a3b0b0b0b0b0b!2sDockyard%20Industrial%20Estate%2C%20London%20SE18%205PQ!5e0!3m2!1sen!2suk!4v1712345678901" 
+                            width="100%" 
+                            height="200" 
+                            style="border:0" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            class="rounded-lg">
+                        </iframe>
+                     </div>
+                 </section>
+
+                 <section>
+                     <h2 class="text-2xl font-semibold text-blue-800 mb-4">How Can We Help?</h2>
+                     <p class="text-gray-700 mb-4">Reach out to us for:</p>
+                     <ul class="list-none space-y-2 text-gray-700">
+                         <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Inquiries about Virtual Office Address plans.</li>
+                         <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Booking Meeting Rooms or Conference Rooms.</li>
+                         <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Questions about amenities and services.</li>
+                         <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Custom requirements or long-term bookings.</li>
+                          <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Support with existing services or accounts.</li>
+                     </ul>
+                 </section>
+            </div>
+
+            <div class="bg-white p-8 rounded-lg shadow-md">
+                <h2 class="text-2xl font-semibold text-blue-800 mb-6">Send Us a Message</h2>
+                <form action="#" method="POST" class="space-y-5">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                        <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                     <div>
+                        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                        <input type="text" id="subject" name="subject" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500">
+                    </div>
+                     <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md text-lg transform hover:scale-105">
+                            Send Message <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-blue-900 text-blue-200 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-8">
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Company</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Services</h5>
+                     <ul class="space-y-2 text-sm">
+                        <li><a href="virtual-office-address.html">Virtual Office Address</a></li>
+                        <li><a href="meeting-rooms.html">Meeting Rooms</a></li>
+                        <li><a href="conference-rooms.html">Conference Rooms</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li> </ul>
+                </div>
+                <div>
+                     <h5 class="text-lg font-semibold mb-4 text-white">Contact Us</h5>
+                     <address class="not-italic text-sm space-y-2 mb-4">
+                        <p><i class="fas fa-map-marker-alt mr-2 text-orange-400"></i>Unit 6,Block 3, Dockyard Industrial Estate,<br>Church Street, Woolwich, London UK</p>
+                        <p><i class="fas fa-phone-alt mr-2 text-orange-400"></i><a href="tel:+4420000000000">+44 2000 0000 000</a></p>
+                        <p><i class="fas fa-envelope mr-2 text-orange-400"></i><a href="mailto:support@VMC.com">support@VMC.com</a></p>
+                     </address>
+                     <div class="flex space-x-4">
+                        <a href="#" aria-label="LinkedIn" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                     </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-blue-700 text-center text-sm">
+                 &copy; 2025 VMC Virtual Offices. All Rights Reserved. |
+                 <a href="#">Privacy Policy</a> |
+                 <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        console.log("Contact Us page loaded.");
+        // Add JS for mobile menu toggle or form validation/submission if needed
+    </script>
+
+</body>
+</html>

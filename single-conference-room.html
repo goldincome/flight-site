@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Boardroom - Conference Room | VMC</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Reusing styles from index.html */
+        .hero-bg { /* Using a relevant background */
+            background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGNvbmZlcmVuY2V8ZW58MHx8fHwxNjE4NjM0NzAx&ixlib=rb-1.2.1&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+        }
+        .plan-card { /* Reusing for consistency */
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .plan-card .card-content {
+            flex-grow: 1;
+        }
+        /* FAQ Accordion Styles */
+        .faq-item { border-bottom: 1px solid #e5e7eb; }
+        .faq-question { cursor: pointer; }
+        .faq-answer { overflow: hidden; transition: max-height 0.3s ease-out; max-height: 0; }
+        .faq-answer.open { max-height: 300px; margin-top: 0.5rem; }
+        /* Footer link styling */
+        footer a:not(.social-icon) { @apply hover:text-orange-300 transition duration-300 hover:underline; }
+
+        /* Styles for Image Gallery */
+        .thumbnail-container img {
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out; /* Added border-color transition */
+            border: 2px solid transparent;
+        }
+        .thumbnail-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Softer shadow */
+        }
+        /* Active state for thumbnails on the page */
+        .thumbnail-container img.active {
+             border-color: #f97316; /* Orange border */
+             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.85); /* Slightly darker */
+            align-items: center;
+            justify-content: center;
+            opacity: 0; /* Start hidden for transition */
+            transition: opacity 0.3s ease-in-out;
+        }
+        .modal.active {
+             display: flex; /* Shown when active */
+             opacity: 1; /* Fade in */
+        }
+        .modal-content-wrapper { /* Wrapper for scaling transition */
+             max-width: 90%;
+             max-height: 90%;
+             transform: scale(0.95);
+             transition: transform 0.3s ease-in-out;
+        }
+        .modal.active .modal-content-wrapper {
+             transform: scale(1); /* Scale up */
+        }
+        .modal-content {
+            display: block;
+            width: auto; /* Let image determine width */
+            height: auto; /* Let image determine height */
+            max-width: 100%;
+            max-height: 75vh; /* Limit image height */
+            margin: auto;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px; /* Adjusted position */
+            right: 25px; /* Adjusted position */
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .modal-close:hover,
+        .modal-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Thumbnails inside modal */
+        .modal-thumbnails {
+            margin-top: 15px;
+            text-align: center;
+            max-width: 100%;
+            overflow-x: auto;
+            padding-bottom: 10px; /* Space for scrollbar if needed */
+            white-space: nowrap; /* Prevent wrapping */
+        }
+        .modal-thumbnails img {
+            width: 80px; /* Smaller thumbnails in modal */
+            height: 60px;
+            object-fit: cover;
+            margin: 0 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease-in-out;
+            display: inline-block; /* Needed for white-space nowrap */
+        }
+        .modal-thumbnails img:hover {
+            border-color: #fcd34d; /* Lighter orange for hover */
+        }
+         .modal-thumbnails img.active {
+             border-color: #f97316; /* Orange border for active */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+             <a href="index.html" class="text-2xl font-bold hover:text-orange-300 transition duration-300">
+                <i class="fas fa-building mr-2"></i> VMC
+            </a>
+            <ul class="hidden md:flex space-x-6 items-center">
+                <li><a href="index.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Home</a></li>
+                <li><a href="virtual-address.html">Virtual Office Address</a></li>
+                <li><a href="meeting-rooms.html">Meeting Rooms</a></li>
+                 <li><a href="conference-rooms.html" class="font-semibold text-orange-300">Conference Rooms</a></li>
+                <li>
+                    <a href="contact-us.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition duration-300 shadow">
+                        Contact Us <i class="fas fa-arrow-right ml-1"></i>
+                    </a>
+                </li>
+            </ul>
+            <button class="md:hidden focus:outline-none">
+                 <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero-bg text-white relative">
+        <div class="absolute inset-0 bg-black opacity-60"></div>
+        <div class="container mx-auto px-6 py-24 md:py-32 relative z-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 leading-tight">The Boardroom</h1>
+            <p class="text-lg md:text-xl mb-6 text-blue-100 max-w-3xl mx-auto">
+                Our premier conference facility, perfect for board meetings, presentations, and collaborative sessions up to 12 attendees.
+            </p>
+             <a href="#booking" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg">
+                Book Now <i class="fas fa-calendar-check ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <div class="container mx-auto px-6 py-16 md:py-20 max-w-7xl">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+            <div class="lg:col-span-2 space-y-10">
+
+                <section id="room-images">
+                    <h2 class="text-3xl font-bold text-blue-800 mb-6">Gallery</h2>
+                    <div class="mb-6">
+                        <img id="main-room-image" src="conference.jpg" alt="The Boardroom - Main View" class="w-full h-auto rounded-lg shadow-lg object-cover cursor-pointer">
+                    </div>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4 thumbnail-container">
+                        <img src="conference.jpg" alt="Boardroom Thumbnail 1" data-large="conference.jpg" class="w-full h-24 object-cover rounded shadow gallery-thumb active" onerror="this.onerror=null; this.src='https://placehold.co/150x100/cccccc/ffffff?text=Thumb+1'; this.dataset.large='https://placehold.co/1080x720/cccccc/ffffff?text=Image+1+Not+Found'">
+                        <img src="conference3.jpg" alt="Boardroom Thumbnail 2" data-large="conference3.jpg" class="w-full h-24 object-cover rounded shadow gallery-thumb" onerror="this.onerror=null; this.src='https://placehold.co/150x100/cccccc/ffffff?text=Thumb+2'; this.dataset.large='https://placehold.co/1080x720/cccccc/ffffff?text=Image+2+Not+Found'">
+                        <img src="https://source.unsplash.com/random/150x100/?boardroom,detail" alt="Boardroom Thumbnail 3" data-large="https://source.unsplash.com/random/1080x720/?boardroom,detail" class="w-full h-24 object-cover rounded shadow gallery-thumb" onerror="this.onerror=null; this.src='https://placehold.co/150x100/cccccc/ffffff?text=Thumb+3'; this.dataset.large='https://placehold.co/1080x720/cccccc/ffffff?text=Image+3+Not+Found'">
+                        <img src="https://source.unsplash.com/random/150x100/?conference,table" alt="Boardroom Thumbnail 4" data-large="https://source.unsplash.com/random/1080x720/?conference,table" class="w-full h-24 object-cover rounded shadow gallery-thumb" onerror="this.onerror=null; this.src='https://placehold.co/150x100/cccccc/ffffff?text=Thumb+4'; this.dataset.large='https://placehold.co/1080x720/cccccc/ffffff?text=Image+4+Not+Found'">
+                        <img src="https://source.unsplash.com/random/150x100/?projector,screen" alt="Boardroom Thumbnail 5" data-large="https://source.unsplash.com/random/1080x720/?projector,screen" class="w-full h-24 object-cover rounded shadow gallery-thumb" onerror="this.onerror=null; this.src='https://placehold.co/150x100/cccccc/ffffff?text=Thumb+5'; this.dataset.large='https://placehold.co/1080x720/cccccc/ffffff?text=Image+5+Not+Found'">
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2 italic">Click the main image to enlarge.</p>
+                </section>
+
+                <section id="room-description">
+                    <h2 class="text-3xl font-bold text-blue-800 mb-4">Room Description</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed space-y-4">
+                        <p>The Boardroom offers a sophisticated and professional environment designed for executive meetings, high-level presentations, and critical decision-making sessions. Accommodating up to 12 participants comfortably around a large, polished conference table, this room is equipped with state-of-the-art technology to ensure your meetings run smoothly.</p>
+                        <p>Natural light fills the space, complemented by adjustable ambient lighting to create the perfect atmosphere. Premium ergonomic chairs provide comfort for extended sessions. With access to high-speed internet, advanced video conferencing facilities, and a large display screen, The Boardroom provides everything needed for productive collaboration.</p>
+                         <p>Located conveniently within our facility, booking The Boardroom grants access to our break areas and complimentary refreshments (coffee, tea, water). Our support staff is available to assist with setup and technical needs.</p>
+                    </div>
+                </section>
+
+                <section id="room-features">
+                     <h2 class="text-3xl font-bold text-blue-800 mb-6">Room Features</h2>
+                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-6">
+                         <div class="flex items-center text-gray-700">
+                            <i class="fas fa-users text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>Capacity: Up to 12 people</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                            <i class="fas fa-wifi text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>High-Speed Wi-Fi</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                            <i class="fas fa-video text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>Video Conferencing System</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                            <i class="fas fa-desktop text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>Large HD Display Screen</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                             <i class="fas fa-chalkboard text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>Whiteboard & Markers</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                             <i class="fas fa-plug text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>Power Outlets Accessible</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                            <i class="fas fa-chair text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>Ergonomic Seating</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                             <i class="fas fa-coffee text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>Complimentary Refreshments</span>
+                         </div>
+                         <div class="flex items-center text-gray-700">
+                            <i class="fas fa-headset text-2xl text-orange-500 mr-3 w-8 text-center"></i>
+                            <span>On-site Support Available</span>
+                         </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <div class="lg:col-span-1 space-y-10">
+
+                 <section id="booking" class="bg-white p-6 rounded-lg shadow-lg border border-gray-200 sticky top-24">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-4 text-center">Book The Boardroom</h3>
+                     <div class="text-center mb-5">
+                         <span class="text-3xl font-bold text-blue-700">$75</span>
+                         <span class="text-gray-600">/ hour</span>
+                     </div>
+
+                     <form action="cart.html" method="POST" class="space-y-4">
+                         <div>
+                             <label for="booking-date" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                             <input type="date" id="booking-date" name="booking-date" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500" required>
+                         </div>
+                         <div>
+                            <label for="booking-time" class="block text-sm font-medium text-gray-700 mb-1">Time Slot</label>
+                             <select id="booking-time" name="booking-time" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500" required>
+                                 <option value="">Select Time</option>
+                                 <option value="0900-1000">9:00 AM - 10:00 AM</option>
+                                 <option value="1000-1100">10:00 AM - 11:00 AM</option>
+                                 <option value="1100-1200">11:00 AM - 12:00 PM</option>
+                                 <option value="1300-1400">1:00 PM - 2:00 PM</option>
+                                 <option value="1400-1500">2:00 PM - 3:00 PM</option>
+                                 <option value="1500-1600">3:00 PM - 4:00 PM</option>
+                            </select>
+                         </div>
+                         <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-4 rounded-lg transition duration-300 shadow-md text-lg">
+                            Check Availability & Book
+                        </button>
+                         <p class="text-xs text-gray-500 text-center mt-2">Full payment required at booking. See cancellation policy.</p>
+                    </form>
+                </section>
+
+                <section id="why-choose">
+                    <h3 class="text-2xl font-semibold text-blue-800 mb-4">Why Choose The Boardroom?</h3>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i> <span><strong>Professional Impression:</strong> Impress clients and stakeholders in a high-end setting.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i> <span><strong>Fully Equipped:</strong> Includes all necessary tech for seamless presentations and video calls.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i> <span><strong>Comfort & Focus:</strong> Ergonomic seating and optimal lighting for productive meetings.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i> <span><strong>Convenient Location:</strong> Easily accessible within our modern facility.</span></li>
+                        <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-2 mt-1"></i> <span><strong>Support Included:</strong> On-site assistance available if needed.</span></li>
+                    </ul>
+                </section>
+
+                <section id="faq-room">
+                    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Room FAQ</h2>
+                    <div class="space-y-4">
+
+                         <div class="faq-item p-4 rounded-lg bg-gray-100 shadow-sm">
+                            <h4 class="faq-question text-md font-semibold text-blue-700 flex justify-between items-center">
+                                <span>What is the maximum capacity?</span>
+                                <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                            </h4>
+                             <p class="text-gray-600 faq-answer text-sm">The Boardroom comfortably seats up to 12 participants around the main table.</p>
+                        </div>
+                        <div class="faq-item p-4 rounded-lg bg-gray-100 shadow-sm">
+                            <h4 class="faq-question text-md font-semibold text-blue-700 flex justify-between items-center">
+                                <span>Is catering allowed or provided?</span>
+                                <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                            </h4>
+                            <p class="text-gray-600 faq-answer text-sm">You may arrange external catering. We provide complimentary coffee, tea, and water. Please contact us for recommendations or specific arrangements.</p>
+                        </div>
+                         <div class="faq-item p-4 rounded-lg bg-gray-100 shadow-sm">
+                            <h4 class="faq-question text-md font-semibold text-blue-700 flex justify-between items-center">
+                                <span>How does the video conferencing work?</span>
+                                <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                            </h4>
+                            <p class="text-gray-600 faq-answer text-sm">The room is equipped with a high-definition camera, microphone system, and is compatible with major platforms (Zoom, Teams, Google Meet). Instructions are provided, and support is available.</p>
+                        </div>
+                        <div class="faq-item p-4 rounded-lg bg-gray-100 shadow-sm">
+                            <h4 class="faq-question text-md font-semibold text-blue-700 flex justify-between items-center">
+                                <span>What is the cancellation policy?</span>
+                                <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
+                            </h4>
+                             <p class="text-gray-600 faq-answer text-sm">Cancellations made at least 48 hours before the booking start time receive a full refund. Cancellations within 48 hours are non-refundable. Please see full terms for details.</p>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+
+        <section id="cta-booking" class="mt-16 md:mt-24 py-12 bg-blue-600 text-white rounded-lg shadow-xl text-center">
+            <div class="container mx-auto px-6">
+                <h3 class="text-3xl font-semibold mb-4">Ready to Book The Boardroom?</h3>
+                <p class="text-blue-100 mb-8 max-w-lg mx-auto">
+                    Secure this premium space for your next important meeting. Check availability and book online in minutes.
+                </p>
+                 <a href="#booking" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 shadow-lg transform hover:scale-105">
+                    Book The Boardroom Now <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </section>
+
+         <section id="other-rooms" class="mt-16 md:mt-24 text-center">
+             <h2 class="text-2xl font-semibold text-blue-800 mb-6">Explore Other Spaces</h2>
+             <div class="flex justify-center space-x-6">
+                <a href="meeting-rooms.html" class="text-blue-600 hover:text-orange-500 hover:underline transition duration-300">
+                    <i class="fas fa-users mr-1"></i> View Meeting Rooms
+                </a>
+                <a href="conference-rooms.html" class="text-blue-600 hover:text-orange-500 hover:underline transition duration-300">
+                    <i class="fas fa-chalkboard-teacher mr-1"></i> View All Conference Rooms
+                </a>
+             </div>
+        </section>
+
+    </div>
+
+    <div id="imageModal" class="modal"> <span class="modal-close" id="modalClose">&times;</span>
+        <div class="modal-content-wrapper bg-white p-4 rounded-lg"> <img class="modal-content" id="modalImage" src="" alt="Conference Room View"> <div class="modal-thumbnails gallery-scroll" id="modalThumbnails"> </div>
+        </div>
+    </div>
+
+     <footer class="bg-blue-900 text-blue-200 py-12 mt-16 md:mt-24">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-8">
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Company</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Services</h5>
+                     <ul class="space-y-2 text-sm">
+                        <li><a href="virtual-office-address.html">Virtual Office Address</a></li>
+                        <li><a href="meeting-rooms.html">Meeting Rooms</a></li>
+                        <li><a href="conference-rooms.html">Conference Rooms</a></li>
+                        <li><a href="#faq-room">Room FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                     <h5 class="text-lg font-semibold mb-4 text-white">Contact Us</h5>
+                     <address class="not-italic text-sm space-y-2 mb-4">
+                        <p><i class="fas fa-map-marker-alt mr-2 text-orange-400"></i>Unit 6,Block 3, Dockyard Industrial Estate,<br>Church Street, Woolwich, London UK</p>
+                        <p><i class="fas fa-phone-alt mr-2 text-orange-400"></i><a href="tel:+23412345678">+44 2000 0000 000</a></p>
+                        <p><i class="fas fa-envelope mr-2 text-orange-400"></i><a href="mailto:support@VMC.com">support@VMC.com</a></p>
+                     </address>
+                     <div class="flex space-x-4">
+                        <a href="#" aria-label="LinkedIn" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Twitter" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook" class="social-icon text-xl hover:text-orange-300 transition duration-300"><i class="fab fa-facebook-f"></i></a>
+                     </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-blue-700 text-center text-sm">
+                 &copy; 2025 VMC Virtual Offices. All Rights Reserved. |
+                 <a href="#">Privacy Policy</a> |
+                 <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // --- FAQ Toggle ---
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                 if (answer && answer.classList.contains('faq-answer')) {
+                    const isOpen = answer.classList.contains('open');
+                    answer.classList.toggle('open');
+                    if (icon) {
+                        icon.classList.toggle('rotate-180', !isOpen);
+                    }
+                 } else {
+                    console.error("Could not find the answer element for:", question);
+                }
+            });
+        });
+
+        // --- Image Gallery Logic ---
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const mainImg = document.getElementById('main-room-image');
+        const thumbnails = document.querySelectorAll('.gallery-thumb');
+        const modalClose = document.getElementById('modalClose');
+        const modalThumbnailsContainer = document.getElementById('modalThumbnails'); // Container for modal thumbs
+
+        // Array of image sources (using data-large attribute from thumbnails)
+        const largeImageSources = Array.from(thumbnails).map(thumb => thumb.dataset.large);
+
+        // Function to open the modal
+        function openModal(initialSrc) {
+            if (!modal || !modalImg || !modalThumbnailsContainer) return;
+
+            modalImg.src = initialSrc; // Set the initial image in the modal
+            modalThumbnailsContainer.innerHTML = ''; // Clear previous modal thumbnails
+
+            // Populate modal thumbnails
+            largeImageSources.forEach(src => {
+                const thumb = document.createElement('img');
+                thumb.src = src.replace('1080x720', '150x100'); // Create thumb source
+                thumb.alt = "Conference Room View";
+                thumb.dataset.large = src; // Store large source
+                thumb.className = 'modal-thumb'; // Add class for styling if needed
+                 // Apply Tailwind classes directly
+                thumb.classList.add('w-20', 'h-16', 'object-cover', 'inline-block', 'mx-1', 'cursor-pointer', 'border-2', 'border-transparent', 'rounded', 'hover:border-orange-400', 'transition');
+
+                // Add active state to the correct modal thumbnail
+                if (src === initialSrc) {
+                    thumb.classList.add('active', 'border-orange-500');
+                }
+
+                // Add click listener to modal thumbnails
+                thumb.addEventListener('click', function() {
+                    modalImg.src = this.dataset.large; // Update modal main image
+                    // Update active state for modal thumbnails
+                    modalThumbnailsContainer.querySelectorAll('img').forEach(t => t.classList.remove('active', 'border-orange-500'));
+                    this.classList.add('active', 'border-orange-500');
+                });
+                modalThumbnailsContainer.appendChild(thumb);
+            });
+
+            modal.classList.add('active'); // Show the modal
+        }
+
+        // Add click listener to the main image to open the modal
+        if (mainImg) {
+            mainImg.addEventListener('click', function() {
+                openModal(this.src); // Open modal with the current main image source
+            });
+        }
+
+        // Add click listener to page thumbnails to update the main image
+        thumbnails.forEach(thumb => {
+            thumb.addEventListener('click', function() {
+                const largeImagePath = this.dataset.large;
+                if (mainImg && largeImagePath) {
+                    mainImg.src = largeImagePath;
+                    mainImg.alt = this.alt.replace('Thumbnail', 'Main View');
+
+                    // Update active state for page thumbnails
+                    thumbnails.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Close modal functionality
+        if (modalClose) {
+            modalClose.addEventListener('click', () => modal.classList.remove('active'));
+        }
+        if (modal) {
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) { // Click on backdrop
+                    modal.classList.remove('active');
+                }
+            });
+             // Close modal with Escape key
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                }
+            });
+        }
+
+    </script>
+
+</body>
+</html>

@@ -16,7 +16,7 @@
         }
         /* Custom styles if needed */
         .hero-bg-virtual {
-            background-image: url('https://placehold.co/1920x600/1e3a8a/e0e7ff?text=Professional+Business+Address');
+            background-image: url('images/virtual-office-address.jpg');
             background-size: cover;
             background-position: center;
         }
@@ -79,20 +79,26 @@
             -ms-overflow-style: none;  /* IE and Edge */
             scrollbar-width: none;  /* Firefox */
         }
+        /* Star color */
+        .star-rating i {
+            color: #f59e0b; /* Tailwind amber-500 */
+        }
     </style>
 </head>
 <body class="bg-gray-50">
 
-    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-40"> <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="text-2xl font-bold hover:text-orange-300 transition duration-300">
                 <i class="fas fa-building mr-2"></i> YourBrand
             </a>
             <ul class="hidden md:flex space-x-6 items-center">
-                <li><a href="#virtual-office" class="text-orange-300 font-medium border-b-2 border-orange-300 pb-1">Virtual Office</a></li>
-                <li><a href="meeting-room.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Meeting Room</a></li>
-                <li><a href="conference-room.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Conference Room</a></li>
+                <li><a href="index.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Home</a></li>
+                <li><a href="virtual-office.html" class="text-orange-300 font-medium border-b-2 border-orange-300 pb-1">Virtual Office Address</a></li>
+                <li><a href="meeting-rooms.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Meeting Rooms</a></li>
+                <li><a href="conference-rooms.html" class="hover:text-orange-300 transition duration-300 font-medium border-b-2 border-transparent hover:border-orange-300 pb-1">Conference Rooms</a></li>
                 <li>
-                    <a href="#contact" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition duration-300 shadow">
+                    <a href="contact-us.html" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-4 py-2 rounded-lg transition duration-300 shadow">
                         Get Started <i class="fas fa-arrow-right ml-1"></i>
                     </a>
                 </li>
@@ -128,10 +134,11 @@
                 </p>
             </div>
             <div>
-                 <img src="https://source.unsplash.com/random/600x450/?office,business"
+                 <img src="images/virtual-address.jpg"
                      alt="Professional office setting"
                      class="w-full h-auto rounded-lg shadow-lg"
-                     onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/ffffff?text=Image+Not+Found';"> </div>
+                     onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/ffffff?text=Image+Not+Found';">
+            </div>
         </div>
     </section>
 
@@ -188,7 +195,8 @@
         </div>
     </section>
 
-    <section id="how-it-works" class="py-16 md:py-24 bg-blue-50"> <div class="container mx-auto px-6">
+    <section id="how-it-works" class="py-16 md:py-24 bg-blue-50">
+        <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">How It Works in 3 Simple Steps</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto text-center">
                  <div class="flex flex-col items-center p-6">
@@ -218,7 +226,7 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Our Plans</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 <div class="bg-gray-50 rounded-lg shadow-md border border-gray-200 flex flex-col overflow-hidden">
-                    <img src="https://placehold.co/600x300/e0e7ff/374151?text=Basic+Plan+View"
+                    <img src="images/plan/basic-1.jpg"
                          alt="Basic Plan Preview"
                          class="w-full h-48 object-cover cursor-pointer plan-image"
                          data-gallery="basic">
@@ -239,7 +247,7 @@
                 </div>
                 <div class="bg-white rounded-lg shadow-lg border flex flex-col popular-package overflow-hidden">
                      <div class="popular-badge">Popular</div>
-                     <img src="https://placehold.co/600x300/f97316/ffffff?text=Business+Pro+View"
+                     <img src="images/plan/pro-1.jpg"
                           alt="Business Pro Plan Preview"
                           class="w-full h-48 object-cover cursor-pointer plan-image"
                           data-gallery="pro">
@@ -260,7 +268,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 rounded-lg shadow-md border border-gray-200 flex flex-col overflow-hidden">
-                     <img src="https://placehold.co/600x300/1d4ed8/ffffff?text=Enterprise+Suite+View"
+                     <img src="images/plan/enter-1.jpg"
                           alt="Enterprise Suite Plan Preview"
                           class="w-full h-48 object-cover cursor-pointer plan-image"
                           data-gallery="enterprise">
@@ -284,10 +292,11 @@
         </div>
     </section>
 
-    <section id="why-choose-us" class="py-16 md:py-24 bg-blue-50"> <div class="container mx-auto px-6">
+    <section id="why-choose-us" class="py-16 md:py-24 bg-blue-50">
+        <div class="container mx-auto px-6">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Why Choose Our Virtual Address?</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
+                 <div class="text-center p-6 bg-white rounded-lg shadow hover:shadow-lg transition duration-300">
                      <i class="fas fa-landmark text-4xl text-orange-500 mb-4"></i>
                     <h3 class="text-xl font-semibold text-blue-700 mb-2">Prime Location</h3>
                     <p class="text-gray-600">Impress clients with a prestigious business address in a sought-after area.</p>
@@ -321,28 +330,76 @@
         </div>
     </section>
 
-    <section id="faq" class="py-16 md:py-24 bg-white"> <div class="container mx-auto px-6 max-w-4xl">
+    <section id="testimonials" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">What Our Customers Are Saying</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-blue-50 p-6 rounded-lg shadow border border-blue-100">
+                    <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The virtual address service gave my startup the professional image it needed without the high cost. Mail forwarding is always prompt!"</p>
+                    <p class="font-semibold text-blue-800">Aisha Bello</p>
+                    <p class="text-sm text-gray-500">Founder, TechStart NG</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow border border-blue-100">
+                     <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> </div>
+                    <p class="text-gray-700 italic mb-4">"Using YourBrand's virtual office has been seamless. The mail scanning service is incredibly convenient for managing business correspondence remotely."</p>
+                    <p class="font-semibold text-blue-800">Chinedu Okonkwo</p>
+                    <p class="text-sm text-gray-500">Freelance Consultant</p>
+                </div>
+                <div class="bg-blue-50 p-6 rounded-lg shadow border border-blue-100">
+                     <div class="star-rating mb-3">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"The Business Pro plan is perfect for my growing e-commerce store. Having a prestigious address and reliable mail handling makes a huge difference."</p>
+                    <p class="font-semibold text-blue-800">Fatima Ibrahim</p>
+                    <p class="text-sm text-gray-500">CEO, KwikShop</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials-cta" class="py-16 bg-blue-600 text-white">
+         <div class="container mx-auto px-6 text-center">
+            <h3 class="text-3xl font-semibold mb-4">Join Our Satisfied Clients!</h3>
+            <p class="text-blue-100 mb-8 max-w-lg mx-auto">
+                Experience the benefits of a professional business address and reliable mail services. Choose your plan today!
+            </p>
+            <a href="#packages" class="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition duration-300 shadow-lg transform hover:scale-105">
+                Select Your Virtual Office Plan <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
             <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Frequently Asked Questions</h2>
             <div class="space-y-4">
-                <div class="faq-item p-5 rounded-lg bg-gray-50 shadow"> <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>What exactly is a virtual office address?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
                     <p class="text-gray-600 faq-answer">A virtual office address provides businesses with a physical mailing address and office-related services without the overhead of a long lease and administrative staff. It allows you to establish a professional presence in a desired location.</p>
                 </div>
-                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow"> <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>How does mail handling work?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
                     <p class="text-gray-600 faq-answer">We receive mail and packages on your behalf at your virtual address. Depending on your plan, we can hold it for pickup, forward it to another address (daily, weekly, or on-demand), or scan the contents and email them to you.</p>
                 </div>
-                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow"> <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>Can I use this address for business registration?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
                     <p class="text-gray-600 faq-answer">Yes, in most cases, our virtual office address can be used as your official registered business address. However, we recommend checking specific requirements with your local authorities or registration body.</p>
                 </div>
-                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow"> <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
+                 <div class="faq-item p-5 rounded-lg bg-gray-50 shadow">
+                    <h4 class="faq-question text-lg font-semibold text-blue-700 mb-2 flex justify-between items-center">
                         <span>Are meeting rooms included?</span>
                         <i class="fas fa-chevron-down text-orange-500 transition-transform duration-300"></i>
                     </h4>
@@ -375,19 +432,15 @@
 
     <div id="imageModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
         <div id="modalOverlay" class="absolute inset-0 bg-black bg-opacity-75 modal-overlay"></div>
-
         <div class="bg-white p-4 sm:p-6 rounded-lg shadow-xl relative max-w-3xl w-full modal-content transform scale-95">
             <button id="closeModal" class="absolute top-2 right-2 text-gray-600 hover:text-gray-900 text-2xl leading-none z-10">
                 &times;
             </button>
-
             <h3 id="galleryTitle" class="text-xl font-semibold text-blue-800 mb-4 text-center">Plan Gallery</h3>
-
             <div id="galleryContainer" class="gallery-scroll overflow-x-auto flex space-x-4 p-4 bg-gray-100 rounded h-72 items-center">
-                </div>
+            </div>
         </div>
     </div>
-
 
     <script>
         console.log("Virtual Office Address page loaded (interactive FAQ & Gallery enabled).");
@@ -414,24 +467,23 @@
         const modalOverlay = document.getElementById('modalOverlay');
         const closeModalBtn = document.getElementById('closeModal');
         const galleryContainer = document.getElementById('galleryContainer');
-        const galleryTitle = document.getElementById('galleryTitle'); // Get title element
+        const galleryTitle = document.getElementById('galleryTitle');
         const planImages = document.querySelectorAll('.plan-image');
 
-        // Define gallery images (replace with your actual image URLs)
         const galleries = {
             basic: {
                 title: "Basic Mail Plan Gallery",
                 images: [
-                    'https://placehold.co/600x400/e0e7ff/374151?text=Basic+Image+1',
-                    'https://placehold.co/600x400/d1d5db/374151?text=Basic+Image+2',
+                    'images/plan/basic-1.jpg',
+                    'images/plan/basic-2.jpg',
                     'https://placehold.co/600x400/9ca3af/ffffff?text=Basic+Image+3',
                 ]
             },
             pro: {
                  title: "Business Pro Plan Gallery",
                  images: [
-                    'https://placehold.co/600x400/f97316/ffffff?text=Pro+Image+1',
-                    'https://placehold.co/600x400/fb923c/ffffff?text=Pro+Image+2',
+                    'images/plan/pro-1.jpg',
+                    'images/plan/pro-2.jpg',
                     'https://placehold.co/600x400/fdba74/1e3a8a?text=Pro+Image+3',
                     'https://placehold.co/600x400/ffedd5/1e3a8a?text=Pro+Image+4',
                  ]
@@ -439,59 +491,44 @@
             enterprise: {
                  title: "Enterprise Suite Gallery",
                  images: [
-                    'https://placehold.co/600x400/1d4ed8/ffffff?text=Enterprise+Image+1',
-                    'https://placehold.co/600x400/2563eb/ffffff?text=Enterprise+Image+2',
+                    'images/plan/enter-1.jpg',
+                    'images/plan/enter-2.jpg',
                     'https://placehold.co/600x400/60a5fa/ffffff?text=Enterprise+Image+3',
                  ]
             }
         };
 
-        // Function to open the modal and load gallery
         function openModal(galleryId) {
             const galleryData = galleries[galleryId];
             if (!galleryData) {
                 console.error("Gallery data not found for:", galleryId);
                 return;
             }
-
-            // Clear previous images
             galleryContainer.innerHTML = '';
-
-            // Set gallery title
             galleryTitle.textContent = galleryData.title || "Plan Gallery";
-
-            // Load new images
             galleryData.images.forEach(src => {
                 const img = document.createElement('img');
                 img.src = src;
                 img.alt = `${galleryData.title} Image`;
-                // Add classes for styling within the gallery
-                img.className = 'h-64 object-contain rounded-md flex-shrink-0'; // Ensure images don't shrink and keep aspect ratio
+                img.className = 'h-64 object-contain rounded-md flex-shrink-0';
                 galleryContainer.appendChild(img);
             });
-
-            // Show the modal with transition
             modal.classList.remove('hidden');
-            // Trigger reflow to apply initial transition state
             void modal.offsetWidth;
             modal.querySelector('.modal-overlay').classList.add('opacity-100');
             modal.querySelector('.modal-content').classList.remove('scale-95');
             modal.querySelector('.modal-content').classList.add('scale-100');
-
         }
 
-        // Function to close the modal
         function closeModal() {
              modal.querySelector('.modal-overlay').classList.remove('opacity-100');
              modal.querySelector('.modal-content').classList.remove('scale-100');
              modal.querySelector('.modal-content').classList.add('scale-95');
-             // Wait for transition to finish before hiding
              setTimeout(() => {
                  modal.classList.add('hidden');
-             }, 300); // Match transition duration
+             }, 300);
         }
 
-        // Add event listeners to plan images
         planImages.forEach(image => {
             image.addEventListener('click', () => {
                 const galleryId = image.getAttribute('data-gallery');
@@ -499,16 +536,13 @@
             });
         });
 
-        // Add event listeners for closing the modal
         closeModalBtn.addEventListener('click', closeModal);
         modalOverlay.addEventListener('click', closeModal);
 
-        // Prevent clicks inside modal content from closing it via overlay click
         modal.querySelector('.modal-content').addEventListener('click', (event) => {
             event.stopPropagation();
         });
 
-         // Close modal with Escape key
         document.addEventListener('keydown', (event) => {
             if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
                 closeModal();

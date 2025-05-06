@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - VMC Virtual Offices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+         footer a:not(.social-icon) {
+             @apply hover:text-orange-300 transition duration-300 hover:underline;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <header class="bg-blue-700 text-white shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold hover:text-orange-300 transition duration-300">
+                <i class="fas fa-building mr-2"></i> VMC
+            </a>
+            <a href="login.html" class="text-sm hover:text-orange-300 transition duration-300">
+                <i class="fas fa-arrow-left mr-1"></i> Back to Login
+            </a>
+        </nav>
+    </header>
+
+    <main class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md space-y-8 bg-white p-8 md:p-10 shadow-xl rounded-lg">
+            <div>
+                 <div class="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-orange-100 mb-6">
+                     <i class="fas fa-shield-alt text-4xl text-orange-500"></i>
+                </div>
+                <h2 class="mt-6 text-center text-3xl font-extrabold text-blue-800">
+                    Set a New Password
+                </h2>
+                <p class="mt-2 text-center text-sm text-gray-600">
+                    Create a new strong password for your account.
+                </p>
+            </div>
+            <form class="mt-8 space-y-6" action="#" method="POST">
+                <input type="hidden" name="token" value="your_password_reset_token"> <div>
+                    <label for="new-password" class="block text-sm font-medium text-gray-700">New Password</label>
+                    <div class="mt-1">
+                        <input id="new-password" name="new_password" type="password" required
+                               class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+                               placeholder="Enter new password">
+                    </div>
+                </div>
+                <div>
+                    <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                    <div class="mt-1">
+                        <input id="confirm-password" name="confirm_password" type="password" required
+                               class="appearance-none block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm"
+                               placeholder="Confirm new password">
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit"
+                            class="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 transition duration-300">
+                        <i class="fas fa-save mr-2"></i>
+                        Reset Password & Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-blue-900 text-blue-200 py-8 fixed bottom-0 w-full"> <div class="container mx-auto px-6 text-center text-sm">
+            &copy; 2025 VMC Virtual Offices. All Rights Reserved. |
+            <a href="#" class="hover:text-orange-300 transition duration-300">Privacy Policy</a> |
+            <a href="#" class="hover:text-orange-300 transition duration-300">Terms of Service</a>
+        </div>
+    </footer>
+
+</body>
+</html>

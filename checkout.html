@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - VMC Virtual Offices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            /* */
+        }
+
+        /* Inherit styles from index.html or add specific checkout styles */
+        .payment-option {
+            border: 1px solid #e5e7eb;
+            /* gray-200 */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .payment-option:hover,
+        .payment-option.selected {
+            border-color: #2563eb;
+            /* blue-600 */
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+        }
+
+        footer a:not(.social-icon) {
+            /* */
+            @apply hover:text-orange-300 transition duration-300 hover:underline;
+            /* */
+        }
+
+        .secure-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+
+    <header class="bg-blue-700 text-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center"> <a href="index.html"
+                class="text-2xl font-bold hover:text-orange-300 transition duration-300"> <i
+                    class="fas fa-building mr-2"></i> VMC </a>
+            <div class="text-sm text-blue-200 flex items-center">
+                <i class="fas fa-lock mr-2 text-green-400"></i> Secure Checkout
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 md:py-24">
+        <h1 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12">Complete Your Order</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+
+            <div class="md:col-span-2 bg-white p-8 rounded-lg shadow-md border border-gray-200">
+                <h2 class="text-2xl font-semibold text-blue-700 mb-6 border-b pb-3">1. Order Summary</h2>
+                <div class="mb-6 space-y-4">
+                    <div class="flex justify-between items-center text-gray-700"> <span>Virtual Office Address -
+                            Business Pro Plan</span> <span class="font-medium">$99.00 / month</span> </div>
+                    <div class="flex justify-between items-center text-gray-600 text-sm"> <span>Setup Fee</span>
+                        <span class="font-medium">$0.00</span>
+                    </div>
+                </div>
+                <div class="border-t pt-4 mt-4">
+                    <div class="flex justify-between items-center text-blue-800 font-bold text-lg"> <span>Total Due
+                            Today</span>
+                        <span>$99.00</span>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-6 p-3 bg-orange-100 border border-orange-300 text-orange-700 rounded-md text-sm flex items-center">
+                    <i class="fas fa-clock mr-2 animate-pulse"></i>
+                    <span>Limited time offer! Complete your purchase within <strong>15 minutes</strong> to secure this
+                        pricing.</span>
+                </div>
+
+                <h2 class="text-2xl font-semibold text-blue-700 mt-10 mb-6 border-b pb-3">2. Select Payment Method</h2>
+                <form action="order-success.html" method="get">
+                    <div class="space-y-4">
+                        <div class="payment-option p-4 rounded-lg cursor-pointer flex items-center justify-between"
+                            onclick="selectPayment('card')">
+                            <div>
+                                <h3 class="font-semibold text-blue-800">Credit or Debit Card</h3>
+                                <p class="text-sm text-gray-600">Secure payment via Stripe.</p>
+                            </div>
+                            <div>
+                                <i class="fab fa-cc-visa text-2xl text-gray-500 mx-1"></i>
+                                <i class="fab fa-cc-mastercard text-2xl text-gray-500 mx-1"></i>
+                                <i class="fab fa-cc-amex text-2xl text-gray-500 mx-1"></i>
+                            </div>
+                        </div>
+                        <div id="card-details" class="hidden mt-4 space-y-4 border-t pt-4">
+                            <input type="text" placeholder="Card Number"
+                                class="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required>
+                            <div class="grid grid-cols-2 gap-4">
+                                <input type="text" placeholder="MM / YY"
+                                    class="p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    required>
+                                <input type="text" placeholder="CVC"
+                                    class="p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    required>
+                            </div>
+                            <input type="text" placeholder="Cardholder Name"
+                                class="w-full p-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                required>
+                        </div>
+
+                        <div class="payment-option p-4 rounded-lg cursor-pointer flex items-center justify-between"
+                            onclick="selectPayment('paypal')">
+                            <div>
+                                <h3 class="font-semibold text-blue-800">PayPal</h3>
+                                <p class="text-sm text-gray-600">Pay securely using your PayPal account.</p>
+                            </div>
+                            <img src="https://www.paypalobjects.com/webstatic/mktg/logo-center/PP_Acceptance_Mark_blue_badge_200x51.png"
+                                alt="PayPal Logo" class="h-8">
+                        </div>
+                    </div>
+                
+                    <div class="mt-8 text-center text-sm text-gray-500 flex items-center justify-center space-x-4"> <span
+                            class="secure-badge bg-green-100 text-green-700">
+                            <i class="fas fa-lock mr-1"></i> SSL Secured Connection
+                        </span>
+                        <span class="secure-badge bg-blue-100 text-blue-700">
+                            <i class="fas fa-shield-alt mr-1"></i> Verified Payment Gateway
+                        </span>
+                    </div>
+
+                    <button
+                        class="mt-10 w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition duration-300 shadow-lg transform hover:scale-105">
+                        Complete Purchase <i class="fas fa-arrow-right ml-2"></i> </button>
+                    <p class="text-xs text-gray-500 text-center mt-4">By clicking "Complete Purchase", you agree to our <a
+                            href="#" class="underline hover:text-blue-700">Terms of Service</a> and <a href="#"
+                            class="underline hover:text-blue-700">Privacy Policy</a>.</p>
+                </form>
+            </div>
+
+            <div class="md:col-span-1 space-y-8">
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center"> <img
+                        src="https://placehold.co/80x80/34d399/ffffff?text=?" alt="Guarantee Badge"
+                        class="mx-auto mb-4 rounded-full">
+                    <h3 class="text-lg font-semibold text-blue-700 mb-2">Our Satisfaction Guarantee</h3>
+                    <p class="text-gray-600 text-sm leading-relaxed"> We stand by our services. If you're not completely
+                        satisfied within the first 30 days, contact us for a hassle-free refund. Your business success
+                        is our priority.
+                    </p>
+                </div>
+
+                <div class="bg-white p-6 rounded-lg shadow-md border border-gray-200">
+                    <h3 class="text-lg font-semibold text-blue-700 mb-4 text-center">Why Choose VMC?</h3>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start"><i
+                                class="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span>Prestigious London
+                                Business Address.</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span>Secure Mail Handling &
+                                Forwarding.</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span>Flexible Plans to Suit
+                                Your Needs.</span></li>
+                        <li class="flex items-start"><i
+                                class="fas fa-check-circle text-green-500 mr-2 mt-1"></i><span>Dedicated Customer
+                                Support.</span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 text-center"> <i
+                        class="fas fa-headset text-3xl text-blue-600 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-blue-700 mb-2">Need Assistance?</h3>
+                    <p class="text-gray-600 text-sm mb-4"> Have questions about the checkout process or our services?
+                        Our team is here to help!
+                    </p>
+                    <a href="contact-us.html"
+                        class="text-sm font-medium text-orange-600 hover:text-orange-700 hover:underline"> Contact
+                        Support <i class="fas fa-arrow-right ml-1"></i> </a>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-blue-900 text-blue-200 py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left mb-8">
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Company</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="about-us.html">About Us</a></li>
+                        <li><a href="contact-us.html">Contact Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Our Services</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="virtual-office-address.html">Virtual Office Address</a></li>
+                        <li><a href="meeting-rooms.html">Meeting Rooms</a></li>
+                        <li><a href="conference-rooms.html">Conference Rooms</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-lg font-semibold mb-4 text-white">Contact Us</h5>
+                    <address class="not-italic text-sm space-y-2 mb-4">
+                        <p><i class="fas fa-map-marker-alt mr-2 text-orange-400"></i>Unit 6,Block 3, Dockyard Industrial
+                            Estate,<br>Church Street, Woolwich, London UK</p>
+                        <p><i class="fas fa-phone-alt mr-2 text-orange-400"></i><a href="tel:+23412345678">+44 2000 0000
+                                000</a></p>
+                        <p><i class="fas fa-envelope mr-2 text-orange-400"></i><a
+                                href="mailto:support@VMC.com">support@VMC.com</a></p>
+                    </address>
+                    <div class="flex space-x-4"> <a href="#" aria-label="LinkedIn"
+                            class="social-icon text-xl hover:text-orange-300 transition duration-300"><i
+                                class="fab fa-linkedin"></i></a> <a href="#" aria-label="Twitter"
+                            class="social-icon text-xl hover:text-orange-300 transition duration-300"><i
+                                class="fab fa-twitter"></i></a> <a href="#" aria-label="Facebook"
+                            class="social-icon text-xl hover:text-orange-300 transition duration-300"><i
+                                class="fab fa-facebook-f"></i></a> </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-blue-700 text-center text-sm"> &copy; 2025 VMC Virtual Offices. All
+                Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> </div>
+        </div>
+    </footer>
+
+    <script>
+        function selectPayment(method) {
+            // Remove selected state from all options
+            document.querySelectorAll('.payment-option').forEach(el => el.classList.remove('selected'));
+            // Add selected state to the clicked option
+            event.currentTarget.classList.add('selected');
+
+            const cardDetails = document.getElementById('card-details');
+            if (method === 'card') {
+                cardDetails.classList.remove('hidden');
+            } else {
+                cardDetails.classList.add('hidden');
+            }
+            // In a real implementation, you would store the selected method
+            console.log("Selected payment method:", method);
+        }
+
+        // Initialize first payment method as selected visually (optional)
+        // document.querySelector('.payment-option').classList.add('selected');
+        // if (document.querySelector('.payment-option').innerText.includes('Card')) {
+        //     document.getElementById('card-details').classList.remove('hidden');
+        // }
+
+    </script>
+
+</body>
+
+</html>
